@@ -36,7 +36,11 @@ def main():
     for int in args.int:
         string_int.append(str(int))
 
+    # string_list = [str(int) for int in args.int]
+
     print(' + '.join(string_int) + ' = ' + str(sum(args.int)))
+
+    # print('{} = {}'.format(' + '.join(map(str,args.int)),sum(args.nums)))
 
 
 # --------------------------------------------------
