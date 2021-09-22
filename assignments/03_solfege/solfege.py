@@ -24,22 +24,24 @@ def get_args():
     return parser.parse_args()
 
 # --------------------------------------------------
+
+
 def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    solfege_list=dict(
-        Do = 'A deer, a female deer',
-        Re= 'A drop of golden sun',
-        Mi = 'A name I call myself',
-        Fa = 'A long long way to run',
-        Sol = 'A needle pulling thread',
-        La = 'A note to follow sol',
-        Ti = 'A drink with jam and bread')
+    solfege_list = dict(
+        Do='A deer, a female deer',
+        Re='A drop of golden sun',
+        Mi='A name I call myself',
+        Fa='A long long way to run',
+        Sol='A needle pulling thread',
+        La='A note to follow sol',
+        Ti='A drink with jam and bread')
 
     for syl in args.solfege:
         if syl in solfege_list:
-            print('{}, {}'.format(syl,solfege_list[syl]))
+            print('{}, {}'.format(syl, solfege_list[syl]))
         else:
             print('I don\'t know "{}"'.format(syl))
 
