@@ -6,8 +6,6 @@ Purpose: Python cat
 """
 
 import argparse
-import os
-import sys
 
 
 # --------------------------------------------------
@@ -21,6 +19,8 @@ def get_args():
     parser.add_argument('file',
                         help='Input file(s)',
                         metavar='FILE',
+                        type=argparse.FileType('rt'),
+                        default=None,
                         nargs='+')
 
     parser.add_argument('-n',
@@ -38,13 +38,13 @@ def main():
 
     args = get_args()
 
-    for file in args.file:
-            if os.path.isfile(file):
-                output=open(file).read()
-                if args.number == True:
-                    print(output)
-                else:
-                    print(output)
+    for f in args.file:
+        if args.file:
+            if args.number is True:
+                for num, val in enumerate(f.readlines(), start=1):
+                    print('     {}	{}'.format(num, val.rstrip()))
+            else:
+                print(f.read().rstrip())
 
 
 # --------------------------------------------------
