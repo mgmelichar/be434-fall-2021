@@ -43,11 +43,12 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    file = args.codons.read().strip()
+    key = args.codons.read().strip()
     base_list = [args.seq[i:i+3].upper() for i in range(0, len(args.seq), 3)]
-    base_val = [file.find(base) for base in base_list]
-    args.output.write(
-        ''.join(["-" if val == -1 else file[val+4] for val in base_val]))
+    base_val = [key.find(base) for base in base_list]
+
+    print(''.join(["-" if val == -1 else key[val+4]
+          for val in base_val]), file=args.output)
     print('Output written to "{}".'.format(args.output.name))
 
 
