@@ -32,6 +32,7 @@ def get_args():
     parser.add_argument('-o',
                         '--output',
                         help='Output filename',
+                        type=argparse.FileType('wt'),
                         default='out.txt')
 
     return parser.parse_args()
@@ -45,10 +46,9 @@ def main():
     file = args.codons.read().rstrip()
     base_list = [args.seq[i:i+3].upper() for i in range(0, len(args.seq), 3)]
     base_val = [file.find(base) for base in base_list]
-    with open(args.output, 'wt') as f:
-        f.write(''.join(["-" if val == -1 else file[val+4]
-                for val in base_val]))
-    print('Output written to "{}".'.format(args.output))
+    args.output.write(
+        ''.join(["-" if val == -1 else file[val+4] for val in base_val]))
+    print('Output written to "{}".'.format(args.output.name))
 
 
 # --------------------------------------------------
