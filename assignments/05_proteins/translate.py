@@ -43,7 +43,7 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    file = args.codons.read().rstrip()
+    file = args.codons.read().strip()
     base_list = [args.seq[i:i+3].upper() for i in range(0, len(args.seq), 3)]
     base_val = [file.find(base) for base in base_list]
     args.output.write(
