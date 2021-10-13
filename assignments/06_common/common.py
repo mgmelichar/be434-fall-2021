@@ -2,7 +2,7 @@
 """
 Author : madelinemelichar <madelinemelichar@localhost>
 Date   : 2021-10-11
-Purpose: Rock the Casbah
+Purpose: common.py
 """
 
 import argparse
@@ -14,7 +14,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='common.py',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('FILE1',
