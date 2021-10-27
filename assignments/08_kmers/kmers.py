@@ -42,14 +42,6 @@ def get_args():
 
 
 # --------------------------------------------------
-def find_kmers(seq, k):
-    """ Find k-mers in string """
-
-    n = len(seq) - k + 1
-    return [] if n < 1 else [seq[i:i + k] for i in range(n)]
-
-
-# --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
