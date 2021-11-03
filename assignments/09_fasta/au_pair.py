@@ -39,7 +39,8 @@ def main():
 
     args = get_args()
 
-    os.mkdir(os.path.join(os.getcwd(), args.outdir))
+    if not os.path.isdir(args.outdir):
+        os.makedirs(args.outdir)
 
     for file in args.FILE:
         root, ext = os.path.splitext(os.path.basename(file.name))
