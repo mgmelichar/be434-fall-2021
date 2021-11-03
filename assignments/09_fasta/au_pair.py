@@ -41,23 +41,23 @@ def main():
 
     os.mkdir(os.path.join(os.getcwd(), args.outdir))
 
-    even_seq = []
-    odd_seq = []
-
     for file in args.FILE:
         root, ext = os.path.splitext(os.path.basename(file.name))
         i = 0
+        even_seq = []
+        odd_seq = []
         for record in SeqIO.parse(file, "fasta"):
             i += 1
             if (i % 2) == 0:
                 even_seq.append(record)
             else:
                 odd_seq.append(record)
-
-        SeqIO.write(even_seq, "{}".format(
-            os.path.join(args.outdir, root+"_2"+ext)), "fasta")
-        SeqIO.write(odd_seq, "{}".format(
-            os.path.join(args.outdir, root+"_1"+ext)), "fasta")
+        SeqIO.write(even_seq, os.path.join(
+            args.outdir, root + "_2" + ext),
+            "fasta")
+        SeqIO.write(odd_seq, os.path.join(
+            args.outdir, root + "_1" + ext),
+            "fasta")
 
     print('Done, see output in "{}"'.format(args.outdir))
 
