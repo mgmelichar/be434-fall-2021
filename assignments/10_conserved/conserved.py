@@ -32,16 +32,14 @@ def main():
     FILE = args.FILE.read().strip()
     seqs = FILE.splitlines()
 
-    final_line = []
+    print(FILE)
+
     for i in range(len(seqs[0])):
         bases = [base[i] for base in seqs]
         if bases.count(bases[0]) == len(bases):
-            final_line.append("|")
+            print("|", end='')
         else:
-            final_line.append("X")
-
-    print(FILE)
-    print(''.join(final_line))
+            print("X", end='')
 
 
 # --------------------------------------------------
