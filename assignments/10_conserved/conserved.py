@@ -30,12 +30,12 @@ def main():
 
     args = get_args()
     FILE = args.FILE.read().strip()
-    seqs = FILE.split("\n")
-    final_line = []
+    seqs = FILE.splitlines()
 
+    final_line = []
     for i in range(len(seqs[0])):
-        pairs = [base[i] for base in seqs]
-        if pairs.count(pairs[0]) == len(pairs):
+        bases = [base[i] for base in seqs]
+        if bases.count(bases[0]) == len(bases):
             final_line.append("|")
         else:
             final_line.append("X")
