@@ -7,6 +7,7 @@ Purpose: grep.py
 
 import argparse
 import sys
+import re
 
 
 # --------------------------------------------------
@@ -45,45 +46,14 @@ def get_args():
 def main():
     """Make a jazz noise here"""
 
-    out = []
     args = get_args()
-    for text in args.FILE:
-        for line in text:
 
-            # Optional ending
-            if '?' in args.pattern:
-                pattern_2 = args.pattern[0:-2]
-
-                if args.insensitive is True:
-                    # Optional ending, insensitive search
-                    if line.find(pattern_2) != -1:
-                        out.append(line)
-                    if line.find(pattern_2.capitalize()) != -1:
-                        out.append(line)
-                    if line.find(pattern_2.upper()) != -1:
-                        out.append(line)
-                    if line.find(pattern_2.lower()) != -1:
-                        out.append(line)
-                else:
-                    # Optional ending, sensitive search
-                    if line.find(pattern_2) != -1:
-                        out.append(line)
-            else:
-                # insensitive search
-                if args.insensitive is True:
-                    # NO optional ending, insensitive
-                    if line.find(args.pattern.capitalize()) != -1:
-                        out.append(line)
-                    if line.find(args.pattern.upper()) != -1:
-                        out.append(line)
-                    if line.find(args.pattern.lower()) != -1:
-                        out.append(line)
-                else:
-                    # NO optional ending, sensitive search
-                    if line.find(args.pattern) != -1:
-                        out.append(line)
-    for i in out:
-        print(i.strip(), file=args.outfile)
+    for file in args.FILE:
+        for line in file:
+            if re.search(args.pattern, line,
+                         re.IGNORECASE if args.insensitive else 0):
+                print('{}{}'.format(f'{file.name}:' if len(args.FILE)
+                      > 1 else '', line), end="", file=args.outfile)
 
 
 # --------------------------------------------------
